@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order</title>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="EventUtil.js"></script>
+        <link rel="stylesheet" type="text/css" href="mainStyle.css">
+        <style>
+            #btn
+            {
+                width: 150px;
+                height: 50px;
+                color:#FFAAAA;
+                font-weight:bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="title"><img src="backgroundPhoto/logo.png" width="60" height="60">&nbsp;Min Online Book Shop</div>
+        <br>
+        <div id="menu">
+            <li><a href="main.html">Home</a></li>
+            <li><a href="Popular.html">Popular</a></li>
+            <li><a href="Store.html">Store</a></li>
+            <li><a href="Content.html">ContactUs</a></li>
+            <li><a href="Profile.html">Profile</a></li>
+        </div><br>
+        <center>
+        <div id="P">
+            <form action="OrderInformation.html" onsubmit="StoreData()">
+            <table cellspacing="20px" cellpadding="10px" id="orderTable">
+                <tr>
+                    <td rowspan="5"><img id="ani"></td>
+                    <td>Book name : </td>
+                    <td>
+                        <input type="text" size="35" id="orderName" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Total price : </td>
+                    <td>
+                        <input type="text" size="35" id="orderPrice" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quantity : </td>
+                    <td>
+                        <input type="text" size="35" id="orderQty" value="1" onfocus="select()" oninput="calcalate()" pattern="[0-9]{1,}" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Name : </td>
+                    <td><input type="text" size="35" id="cusName" pattern="[A-Z a-z]{3,}" placeholder="Mg Mg/ Ma Ma" required></td>
+                </tr>
+                <tr>
+                    <td>Email : </td>
+                    <td><input type="email" size="35" id="cusEmail" placeholder="www.-----.com" required></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Phone : </td>
+                    <td><input type="text" size="35" id="cusPhone" placeholder="09-------" pattern="^(09)[0-9]{9}$" required></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Nrc : </td>
+                    <td><input type="text" size="35" id="cusNrc" required></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Address : </td>
+                    <td><input type="text" size="35" id="cusAddress" placeholder="city/state/country" pattern="[A-Z a-z]{3,}/[A-Z a-z]{3,}/[A-Z a-z]{3,}" required></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><input type="Submit" value="Order" id="btn"></td>
+                </tr>
+            </table>
+            </form>
+        </div>
+        </center>
+        <script type="text/javascript">
+            var order_name_txt = document.getElementById("orderName");
+            var order_price_txt = document.getElementById("orderPrice");
+            var calculate_price = sessionStorage.getItem("bookPrice");
+            var Src = sessionStorage.getItem("bookSrc");
+            EventUtil.addHandler(window,"load",function(){
+                document.getElementById("ani").setAttribute("src",Src);
+                order_name_txt.value = sessionStorage.getItem("bookName");
+                order_price_txt.value = calculate_price+" ks";
+                if(sessionStorage.getItem("user_type") == "member"){
+                    document.getElementById("cusName").value = sessionStorage.getItem("Sname");
+                    document.getElementById("cusName").disabled = true;
+                    document.getElementById("cusEmail").value = sessionStorage.getItem("Semail");
+                    document.getElementById("cusEmail").disabled = true;
+                    document.getElementById("cusPhone").value = sessionStorage.getItem("Sphone");
+                    document.getElementById("cusPhone").disabled = true;
+                    document.getElementById("cusAddress").value = sessionStorage.getItem("Saddress");
+                    document.getElementById("cusAddress").disabled = true;
+                }
+                else if(sessionStorage.getItem("user_type") == "admin"){
+                    window.location.href = "Store.html";
+                }
+            });
+            
+            function calcalate()
+            {
+                var amount = document.getElementById("orderQty").value*calculate_price;
+                order_price_txt.value = amount+" ks";
+            }
+            
+            function StoreData()
+            {
+                sessionStorage.setItem("bookName",document.getElementById("orderName").value);
+                sessionStorage.setItem("bookPrice",document.getElementById("orderPrice").value);
+                sessionStorage.setItem("totalBook",document.getElementById("orderQty").value);
+                sessionStorage.setItem("Sname",document.getElementById("cusName").value);
+                sessionStorage.setItem("Semail",document.getElementById("cusEmail").value);
+                sessionStorage.setItem("Sphone",document.getElementById("cusPhone").value);
+                sessionStorage.setItem("Saddress",document.getElementById("cusAddress").value);
+                sessionStorage.setItem("Snrc",document.getElementById("cusNrc").value);
+                alert(document.getElementById("cusName").value+"\nThanks for your order.");
+            }
+            
+        </script>
+    </body>
+</html>

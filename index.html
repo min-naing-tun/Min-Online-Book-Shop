@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Login Form</title>
+        <script type="text/javascript" src="EventUtil.js"></script>
+        <style>
+            body
+            {
+		position: absolute;
+		left:30%;
+                padding: 100px;
+                background-image: url("LoginPhoto/background.jpg");
+            }
+            #login
+            {
+                background-image: url(LoginPhoto/f_background.jpeg);
+                filter: opacity(90%);
+                text-align: center;
+                border-radius: 20px;
+                background-color: antiquewhite;
+                height: 350px;
+		animation-name: drop;
+		animation-duration: 1.2s;
+		animation-iteration-count: 1;
+		animation-fill-mode: alternative;
+		animation-play-state: 0.1.2;
+            }
+            h2
+            {
+                font-size: 30px;
+                font-weight: bold;
+                text-decoration: underline;
+            }
+            table
+            {
+                padding: 10px;
+                border-spacing: 20px;
+            }
+            #btn
+            {
+                background-color:#1d1e22;
+                color:#FFAAAA;
+                font-weight:bold;
+            }
+	@keyframes drop
+	{
+		from
+		{
+			transform: translateY(-1000px);
+		}
+		to
+		{
+			transform: translateY(2px);
+		}
+	}
+        </style>
+    </head>
+    <body>
+	<center>
+        <div id="login">
+            <h2>Member Login</h2>
+            <img src="LoginPhoto/Login%20profile.png" width="100px" height="100px">
+            <form method="get" onsubmit="check()" id="myForm">
+                <center>
+                    <table>
+                        <tr>
+                            <td>Email:</td><!--admin.com-->
+                            <td><input type="text" id="email" size="35" placeholder="Enter your email address" title="Enter your email address" autofocus required></td>
+                        </tr>
+                        <tr>
+                            <td>Password: </td><!--min-->
+                            <td><input type="password" id="pwd" size="35" placeholder="Enter password" title="Enter your password" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="Sign In" id="btn" title="SignIn"></td>
+                            <td><a href="createAccount.html"><input type="button" value="Create Account" id="btn" title="Create Account"></a>
+                                <a href="main.html"><input type="button" value="Guest" id="btn" title="Guest" onclick="GuestMode()"></a>&nbsp;
+                                <input type="button" value="Admin" id="btn" title="Admin" onclick="GotoAdmin()">
+                            </td>
+                        </tr>
+                    </table>
+                    </center>
+            </form>
+        </div>
+	</center>
+        <script type="text/javascript">
+            function GotoAdmin()
+            {
+                window.location.href = "admin.html";
+            }
+            //////////////////////////////////////////////////////////////////////////////
+            localStorage.setItem("user_n0","admin");//store admin data to localStorage
+            localStorage.setItem("user_pass0","admin");//store admin data to localStorage
+            localStorage.setItem("user_e0","admin.com")//store admin data to localStorage
+            //////////////////////////////////////////////////////////////////////////////
+            
+            var t1 = localStorage.getItem("user_n0");
+            var t2 = localStorage.getItem("user_pass0");
+            var t3 = localStorage.getItem("user_e0");
+            
+            function check()
+            {
+                var email = document.getElementById("email").value;
+                var pwd = document.getElementById("pwd").value;
+               if(email == t3 && pwd == t2)//check admin
+                    {
+                        sessionStorage.setItem("user_type","admin");
+                        alert("Welcome admin!");
+                        var f = document.getElementById("myForm");
+                        f.setAttribute("action","main.html");
+                        /////////SessionStoreage information////////
+                        sessionStorage.setItem("Sname","ADMIN");
+                        sessionStorage.setItem("Sgender","admin");
+                        sessionStorage.setItem("Sbirth","-");
+                        sessionStorage.setItem("Saddress","Ponnagyun/Arakan/Myanmar");
+                        sessionStorage.setItem("SFav","-");
+                        /////////session storage complete///////////
+                    }
+                else
+                    {
+                        var member_test = false;
+                        var numberOfMember = localStorage.getItem("T_Count");
+                        var memberEmailTest = "";
+                        var memberPassTest = "";
+                        //////for session Storage data/////////
+                        var memberName = "";
+                        var memberGender = "";
+                        var memberBirth = "";
+                        var memberAddress = "";
+                        var memberFav = "";
+                        var memberEmail = "";
+                        var memberPhone = "";
+                        var messageNotiNo = "";
+                        ///////////////////////////////////////
+                        
+                        for(var i=1; i<=numberOfMember; i++){
+                            memberEmailTest = localStorage.getItem("user_e"+i);
+                            memberPassTest = localStorage.getItem("user_pass"+i);
+                            if(email == memberEmailTest && pwd == memberPassTest){
+                                    memberName = localStorage.getItem("user_n"+i);
+                                    memberGender = localStorage.getItem("user_g"+i);
+                                    memberBirth = localStorage.getItem("user_b"+i);
+                                    memberAddress = localStorage.getItem("user_a"+i);
+                                    memberFav = localStorage.getItem("user_f"+i);
+                                    memberEmail = localStorage.getItem("user_e"+i);
+                                    memberPhone = localStorage.getItem("user_p"+i);
+                                    messageNotiNo = i;
+                                    member_test = true;
+                                }
+                        }
+                        if(member_test)
+                            {
+                                alert("Welcome Back!");
+                                /////////SessionStoreage information////////
+                                sessionStorage.setItem("Sname",memberName);
+                                sessionStorage.setItem("Sgender",memberGender);
+                                sessionStorage.setItem("Sbirth",memberBirth);
+                                sessionStorage.setItem("Saddress",memberAddress);
+                                sessionStorage.setItem("SFav",memberFav);
+                                sessionStorage.setItem("Semail",memberEmail);
+                                sessionStorage.setItem("Sphone",memberPhone);
+                                sessionStorage.setItem("user_inboxNo",messageNotiNo);
+                                var discount = localStorage.getItem("discountPrice");
+                                if(discount == null){
+                                    sessionStorage.setItem("Sdiscount",200);
+                                }
+                                else{
+                                    sessionStorage.setItem("Sdiscount",discount);
+                                }
+                                /////////session storage complete///////////
+                                var f = document.getElementById("myForm");
+                                f.setAttribute("action","main.html");
+                                sessionStorage.setItem("user_type","member");
+                            }
+                        else
+                            {
+                                alert("Try again");
+                            }
+                    }
+            }
+            
+            function GuestMode()
+            {
+                sessionStorage.setItem("user_type","guest");
+            }
+        </script>
+    </body>
+</html>

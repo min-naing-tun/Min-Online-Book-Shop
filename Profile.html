@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="mainStyle.css">
+        <script type="text/javascript" src="EventUtil.js"></script>
+    </head>
+    <body>
+        <div id="title"><img src="backgroundPhoto/logo.png" width="60" height="60">&nbsp;Min Online Book Shop</div>
+        <br>
+        <div id="menu">
+            <li><a href="main.html">Home</a></li>
+            <li><a href="Popular.html">Popular</a></li>
+            <li><a href="Store.html">Store</a></li>
+            <li><a href="Content.html">ContactUs</a></li>
+            <li><a href="Profile.html">Profile</a></li>
+        </div>
+        <div id="B_p_table">
+        <center>
+            <div id="forGuest" style="visibility: hidden; background-color: #171319; border-radius: 10px;"><a href="createAccount.html">Please create account first!</a></div>
+        <table id="p_table" cellspacing="15px" style="background-color: #171319;
+    color: silver; border-radius: 10px; border: 5px groove red; visibility: visible">
+            <tr>
+                <td id="iconimage"></td>
+                <td id="msg" style="text-align: center"></td>
+            </tr>
+            <tr>
+                <td id="11"></td>
+                <td id="12"></td>
+            </tr>
+            <tr>
+                <td id="21"></td>
+                <td id="22"></td>
+            </tr>
+            <tr>
+                <td id="31"></td>
+                <td id="32"></td>
+            </tr>
+            <tr>
+                <td id="41"></td>
+                <td id="42"></td>
+            </tr>
+        </table>
+        </center>
+        </div>
+        <script type="text/javascript">
+            EventUtil.addHandler(window,"load",function(){
+                var table = document.getElementById("p_table");
+                
+               if(sessionStorage.getItem("user_type") == "guest"){
+                   //do nothing
+                   document.getElementById("p_table").style.visibility = "hidden";
+                   document.getElementById("forGuest").style.visibility="visible";
+                   
+               }else{
+                   var pGender = sessionStorage.getItem("Sgender");
+                   var pName = sessionStorage.getItem("Sname");
+                   var pBirth = sessionStorage.getItem("Sbirth");
+                   var pAddress = sessionStorage.getItem("Saddress");
+                   var pFav = sessionStorage.getItem("SFav");
+                   var image = document.createElement("img");
+                   var message = document.getElementById("msg");
+                   
+                   if(pGender=="admin")
+                       {
+                           image.setAttribute("src","ProfilePhoto/admin.png");
+                           image.setAttribute("id","t_image");
+                           document.getElementById("iconimage").appendChild(image);
+                           createProfile();
+                       }
+                   else if(pGender == "male")
+                       {
+                           image.setAttribute("src","ProfilePhoto/male.png");
+                           image.setAttribute("id","t_image");
+                           document.getElementById("iconimage").appendChild(image);
+                           createProfile();
+                       }
+                   else
+                       {
+                           image.setAttribute("src","ProfilePhoto/female.png");
+                           image.setAttribute("id","t_image");
+                           document.getElementById("iconimage").appendChild(image);
+                           createProfile();
+                           image = document.createElement("img");
+                       }
+                   function createProfile()
+                   {
+                       document.getElementById("11").appendChild(document.createTextNode("Name : "));
+                       document.getElementById("12").appendChild(document.createTextNode(pName));
+                       document.getElementById("21").appendChild(document.createTextNode("Birthday : "));
+                       document.getElementById("22").appendChild(document.createTextNode(pBirth));
+                       document.getElementById("31").appendChild(document.createTextNode("Address : "));
+                       document.getElementById("32").appendChild(document.createTextNode(pAddress));
+                       document.getElementById("41").appendChild(document.createTextNode("Favorite type : "));
+                       document.getElementById("42").appendChild(document.createTextNode(pFav));
+                       var image1 = document.createElement("img");
+                       image1.setAttribute("id","read");
+                       document.getElementById("msg").appendChild(image1);
+                       var image2 = document.createElement("img");
+                       image2.setAttribute("id","unread");
+                       document.getElementById("msg").appendChild(image2);
+                       var msgNo = sessionStorage.getItem("user_inboxNo");
+                       
+                       if(localStorage.getItem("user_inbox"+msgNo) == "0" && sessionStorage.getItem("user_type") != "admin"){
+                           image1.setAttribute("src","ProfilePhoto/read_msg.png");
+                           image1.setAttribute("width","250");
+                           image1.setAttribute("height","150");
+                           image1.setAttribute("title","No Incoming message!");
+                           document.getElementById("msg").appendChild(image1);
+                       }else if(localStorage.getItem("user_inbox"+msgNo) != "0" && sessionStorage.getItem("user_type") != "admin"){
+                           image2.setAttribute("src","ProfilePhoto/unread_msg.png");
+                           image2.setAttribute("width","250");
+                           image2.setAttribute("height","150");
+                           image2.setAttribute("title","New message arrived!");
+                           document.getElementById("msg").appendChild(image2);
+                       }
+                   }
+                   EventUtil.addHandler(document.getElementById("unread"),"click",function(){
+                      var msgNo = sessionStorage.getItem("user_inboxNo");
+                      var msgText = localStorage.getItem("user_inbox"+msgNo);
+                      alert(msgText);
+                      localStorage.setItem("user_inbox"+msgNo,"0");
+                      window.location.href="Profile.html";
+                   });
+               }
+            });
+        </script>
+        <center>
+        <div id="foot">
+            &copy;Copyright by Min Naing Htun
+        </div>
+        </center>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

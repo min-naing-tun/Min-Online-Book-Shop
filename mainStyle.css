@@ -1,0 +1,212 @@
+body
+{
+    clear: both;
+    margin: 20px 25px 20px;
+    position: relative;
+    background-image: url("backgroundPhoto/background_photo.jpg")
+}
+a
+{
+    text-decoration: none;
+}
+
+#title
+{
+    font-family: sans-serif;
+    text-align: center;
+    background-color: #f6acac;
+    font-size: 50px;
+    font-weight: bold;
+    border: 10px groove yellow;
+    text-shadow: 3px 3px grey;
+}
+
+#menu
+{
+    font-family: impact;
+    border: solid yellow;
+    background-color: #73ff7d;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+    text-shadow: 1px 1px grey;
+}
+#menu li
+{
+    display: inline;
+    list-style: none;
+}
+#menu li a
+{
+    padding: 10px;
+    border: 0.5px solid #73ff7d;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    text-decoration: none;
+    color: #212adb;
+    letter-spacing: 6px;
+}
+#menu li a:hover
+{
+    background-color: aqua;
+}
+#menu li a:active
+{
+    color: red;
+}
+#bottom
+{
+    background-color: darkseagreen;
+    text-align: left;
+}
+#panel
+{
+    text-align: center;
+    padding: 10px;
+}
+#t_image
+{
+    width: 230px;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 3px 3px #4e0c1a;
+    background-color: burlywood;
+}
+#t_image:hover
+{
+    box-shadow: 3px 3px black;
+}
+#foot
+{
+    padding: 5px;
+    font-family: fantasy;
+    letter-spacing: 7px;
+    word-spacing: 5px;
+    text-align: center;
+    background-color: #f32791;
+    text-shadow: 1px 1px grey;
+}
+#B_p_table
+{
+    margin: 1%;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    letter-spacing: 3px;
+}
+#iconimage
+{
+    width: 50px;
+    height: 50px;
+}
+#myBtn
+{
+    margin: 1%;
+    background-color: #5b3d3f;
+    width: 165px;
+    height: 40px;
+    border-radius: 20px;
+    box-shadow: 2px 2px black;
+}
+#myBtn:hover
+{
+    background-color: #1d1b1b;
+    color: silver;
+    font-weight: bold;
+}
+
+#myTr
+{
+    background-color: gray;
+    font-weight: bold;
+}
+#btn
+{
+    width: 250px;
+    height: 45px;
+    background-color: green;
+    color: yellow;
+    border-radius: 20px;
+    margin: 10px 0px 0px 0px;
+    font-family: fantasy;
+    font-size: 25px;
+}
+#btn:hover
+{
+    font-family: fantasy;
+    font-size: 30px;
+    color: red;
+    background-color: black;
+    box-shadow: 1px 1px #fffa77;
+}
+.B_image
+{
+    width: 250px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 3px 3px #4e0c1a;
+    background-color: burlywood;
+    animation-name: show;
+    animation-duration: 250ms;
+    animation-iteration-count: 1;
+}
+#des1,#des2,#des3,#des4,#des5,#des6,#des7,#des8
+{
+    margin: 1%;
+    padding: 2px;
+    border-radius: 5px;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    width: 200px;
+    height: 250px;
+    box-shadow: 2px 2px black;
+    border: 3px solid pink;
+}
+#orderTable
+{
+    background-color: grey;
+}
+strike
+{
+    padding: 2px;
+    background-color: #ef8d8d;
+}
+#ani
+{
+    width: 250px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 3px 3px black;
+    background-color: burlywood;
+    animation-name: show;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+#orderTable
+{
+    font-family: fantasy;
+    word-spacing: 2px;
+}
+
+
+@keyframes show
+{
+	from
+	{
+		transform: scale(0,0);
+	}
+}
+
+
+@keyframes drop
+{
+	from
+	{
+		transform: translateY(-1000px);
+	}
+	to
+	{
+		transform: translateY(2px);
+	}
+}

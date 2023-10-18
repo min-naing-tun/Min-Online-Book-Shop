@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Order Result</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="mainStyle.css" type="text/css">
+        <script type="text/javascript" src="EventUtil.js"></script>
+    </head>
+    <body>
+        <center>
+            <div id="P">
+                <a href="Store.html"><input type="button" value="Go to book store" id="btn"></a><br><br><br>
+                <table cellspacing="20px" cellpadding="10px" id="orderTable" border="2" style="letter-spacing: 3px">
+                    <caption style="background-color: yellow">Order form information</caption><br>
+                    <tr>
+                        <td>Book name : </td>
+                        <td id="bName"></td>
+                    </tr>
+                    <tr>
+                        <td>Number of book : </td>
+                        <td id="bTotal"></td>
+                    </tr>
+                    <tr>
+                        <td>Total cost : </td>
+                        <td id="bPrice"></td>
+                    </tr>
+                    <tr>
+                        <td>Name : </td>
+                        <td id="name"></td>
+                    </tr>
+                    <tr>
+                        <td>Phone : </td>
+                        <td id="phone"></td>
+                    </tr>
+                    <tr>
+                        <td>Email : </td>
+                        <td id="email"></td>
+                    </tr>
+                    <tr>
+                        <td>Nrc : </td>
+                        <td id="nrc"></td>
+                    </tr>
+                    <tr>
+                        <td>Address : </td>
+                        <td id="address"></td>
+                    </tr>
+                </table>
+            </div>
+        </center>
+        <script type="text/javascript">
+            EventUtil.addHandler(window,"load",function(){
+                document.getElementById("bName").appendChild(document.createTextNode(sessionStorage.getItem("bookName")));
+                document.getElementById("bTotal").appendChild(document.createTextNode(sessionStorage.getItem("totalBook")));
+                document.getElementById("bPrice").appendChild(document.createTextNode(sessionStorage.getItem("bookPrice")));
+                document.getElementById("name").appendChild(document.createTextNode(sessionStorage.getItem("Sname")));
+                document.getElementById("phone").appendChild(document.createTextNode(sessionStorage.getItem("Sphone")));
+                document.getElementById("email").appendChild(document.createTextNode(sessionStorage.getItem("Semail")));
+                document.getElementById("nrc").appendChild(document.createTextNode(sessionStorage.getItem("Snrc")));
+                document.getElementById("address").appendChild(document.createTextNode(sessionStorage.getItem("Saddress")));
+            });
+        </script>
+        
+    </body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Create Account</title>
+    </head>
+    <script type="text/javascript" src="EventUtil.js"></script>
+    <style>
+        body
+        {
+            background-color: #df94f5;
+            margin: 30px 20px 30px 20px;
+        }
+        h1
+        {
+            background-color: yellow;
+            margin: 0px 12% 10px 12%; 
+            font-family: fantasy;
+            letter-spacing: 2px;
+            word-spacing: 5px;
+            text-align: center;
+            border-radius: 25px;
+            text-shadow: 2px 2px grey;
+        }
+        #install_space
+        {
+            text-align: center;
+        }
+        #FormTable
+        {
+            padding: 20px;
+            background: #f2c6b6;
+            color: #201c1b;
+            font-family: cursive;
+            border: 1px solid red;
+            letter-spacing: 1px;
+            border-radius: 20px;
+        }
+        .btn
+        {
+            background-color:#1d1e22;
+            color:#FFAAAA;
+            font-weight:bold;
+        }
+    </style>
+    <body>
+        <center><h1>Create New Account</h1></center>
+        <center>
+        <div id="install_space">
+            <canvas id="drawing" width="1000" height="35"></canvas>
+        </div>
+        </center><br>
+        
+        <!--To get first input from user-->
+        <center>
+        <div id="panel1">
+            <form id="myForm" onsubmit="UserDataStore()">
+            <table cellspacing="10" id="FormTable">
+                <tr>
+                    <td>Name : </td>
+                    <td>
+                        <input type="text" id="name" title="Enter your name" placeholder="Mg/Ma ----" size="35" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gender : </td>
+                    <td>
+                        <input type="radio" name="Gender" value="male" checked>male&nbsp;
+                        <input type="radio" name="Gender" value="female">female
+                    </td>
+                </tr><tr>
+                    <td>Birthday : </td>
+                    <td>
+                        <input type="text" id="birthday" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" size="35" title="Enter your birthday" placeholder="dd/mm/yy" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address : </td>
+                    <td>
+                        <input type="text" id="address" pattern="[A-Z a-z]{3,}/[A-Z a-z]{3,}/[A-Z a-z]{3,}" size="35" title="Enter your address" placeholder="city/state/country" required>
+                    </td>
+                </tr>
+                <tr>
+                        <td>Email : </td>
+                        <td><input type="email" id="email" title="Enter your email address" size="35" placeholder="www.-----.com" required></td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number : </td>
+                        <td><input type="text" id="phone" title="Enter your phone number" size="35" placeholder="09-------" pattern="^(09)[0-9]{9}$" required></td>
+                    </tr>
+                    <tr>
+                        <td>Password : </td>
+                        <td>
+                        <input type="password" id="password" pattern="[0-9 a-z A-Z]{4,}" size="35" placeholder="At least 4" required>
+                            </td>
+                    </tr>
+                <tr>
+                    <td>Favorite book type : </td>
+                    <td>
+                        <select id="favorite">
+                            <option id="type">science and techonology</option>
+                            <option id="type">tales</option>
+                            <option id="type">poem</option>
+                            <option id="type">biography</option>
+                            <option id="type">comedy</option>
+                            <option id="type">drama</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Next" id="firstStep" class="btn">&nbsp;&nbsp;&nbsp;<input type="Reset" class="btn"></td>
+                    
+                </tr>
+            </table>
+            </form>
+        </div>
+        </center>
+            
+        <script type="text/javascript">
+            var drawing = document.getElementById("drawing");
+            var context = drawing.getContext("2d");
+            EventUtil.addHandler(window,"load",function(){
+                context.fillStyle = "#a1ff88";
+                context.fillRect(0,0,499,35);
+                context.fillStyle = "black";
+                context.font = "20px Georgia";
+                context.fillText("Please enter detail information.........",50,23);
+
+                context.fillStyle = "#a1ff88";
+                context.fillRect(501,0,500,35);
+                context.fillStyle = "black";
+                context.font = "20px Georgia";
+                context.fillText("Thanks for registration..............",550,23); 
+            });
+            function UserDataStore()
+            {
+                var tcount = 0;
+                if(localStorage.length == 2)
+                {
+                   tcount  = 0;
+                }
+                else
+                {
+                    tcount = localStorage.getItem("T_Count");
+                }
+                var C_increment = ++tcount;
+                localStorage.setItem("T_Count",C_increment);//add user count
+                localStorage.setItem("user_n"+C_increment,document.getElementById("name").value);
+                /////////store gender/////////
+                var genderTest = document.getElementsByName("Gender");
+                var gg = "";
+                if(genderTest[0].checked){
+                        gg = genderTest[0].value;
+                    }
+                else{
+                    gg = genderTest[1].value;
+                }
+                localStorage.setItem("user_g"+C_increment,gg);
+                //////////////////////////////
+                localStorage.setItem("user_b"+C_increment,document.getElementById("birthday").value);
+                localStorage.setItem("user_a"+C_increment,document.getElementById("address").value);
+                localStorage.setItem("user_e"+C_increment,document.getElementById("email").value);
+                localStorage.setItem("user_p"+C_increment,document.getElementById("phone").value);
+                localStorage.setItem("user_pass"+C_increment,document.getElementById("password").value);
+                localStorage.setItem("user_f"+C_increment,document.getElementById("favorite").value);
+                localStorage.setItem("user_inbox"+C_increment,"0");
+                ////localStorage complete////////
+                /////////for profile//////////////
+                /////////SessionStoreage information////////
+                sessionStorage.setItem("Sname",document.getElementById("name").value);
+                sessionStorage.setItem("Sgender",gg);
+                sessionStorage.setItem("Sbirth",document.getElementById("birthday").value);
+                sessionStorage.setItem("Saddress",document.getElementById("address").value);
+                sessionStorage.setItem("SFav",document.getElementById("favorite").value);
+                sessionStorage.setItem("Semail",document.getElementById("email").value);
+                sessionStorage.setItem("Sphone",document.getElementById("phone").value);
+                sessionStorage.setItem("user_inboxNo",C_increment);
+                sessionStorage.setItem("user_type","member");
+                /////for discount////////
+                var discount = localStorage.getItem("discountPrice");
+                                if(discount == null){
+                                    sessionStorage.setItem("Sdiscount",500);
+                                }
+                                else{
+                                    sessionStorage.setItem("Sdiscount",discount);
+                                }
+                /////////session storage complete/////////
+                var form = document.getElementById("myForm");
+                
+                var n = localStorage.getItem("user_n"+C_increment);
+                alert("Hello "+n+"\nWelcome to Min Online Book Shop");//greeting
+                
+                form.setAttribute("action","main.html");///go to main page
+            }
+            
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Store</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="mainStyle.css">
+        <script type="text/javascript" src="EventUtil.js"></script>
+    </head>
+    <body>
+        <div id="title"><img src="backgroundPhoto/logo.png" width="60" height="60">&nbsp;Min Online Book Shop</div>
+        <br>
+        <div id="menu">
+            <li><a href="main.html">Home</a></li>
+            <li><a href="Popular.html">Popular</a></li>
+            <li><a href="Store.html">Store</a></li>
+            <li><a href="Content.html">ContactUs</a></li>
+            <li><a href="Profile.html">Profile</a></li>
+        </div>
+        <center>
+        <div id="secondMenu">
+            <a href="Science.html"><input type="button" value="Science and Technology" id="myBtn"></a>
+            <a href="Tale.html"><input type="button" value="Tale" id="myBtn"></a>
+            <a href="Drama.html"><input type="button" value="Drama" id="myBtn"></a>
+            <a href="Biography.html"><input type="button" value="Biography" id="myBtn"></a>
+            <a href="Poem.html"><input type="button" value="Poem" id="myBtn"></a>
+            <a href="Comedy.html"><input type="button" value="Comedy" id="myBtn"></a>
+        </div>
+            <center>
+        <div id="bookStoreDisplay" style="background-color: #171319;
+    color: silver;">
+            
+        </div>
+                </center>
+        </center>
+        <script type="text/javascript">
+            var favorite = sessionStorage.getItem("SFav");
+            EventUtil.addHandler(window,"load",function(){
+               if(favorite == "science and techonology" || sessionStorage.getItem("user_type")=="guest"){
+                    window.location.href = "Science.html";
+                }else if(favorite == "tales"){
+                    window.location.href = "Tale.html";
+                }else if(favorite == "poem"){
+                    window.location.href = "Poem.html";
+                }else if(favorite == "biography"){
+                    window.location.href = "Biography.html";
+                }else if(favorite == "comedy"){
+                    window.location.href = "Comedy.html";
+                }else if(favorite == "drama"){
+                    window.location.href = "Drama.html";
+                }else{
+                    var admin = document.createElement("a");
+                    admin.setAttribute("href","admin.html");
+                    admin.appendChild(document.createTextNode("Go to admin page."));
+                    document.getElementById("bookStoreDisplay").appendChild(admin);
+                }
+                
+            });
+        </script>
+    </body>
+</html>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

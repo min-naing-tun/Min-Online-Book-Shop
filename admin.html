@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Inside Admin</title>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="EventUtil.js"></script>
+    </head>
+    <style>
+        body
+        {
+            margin: 20px 20px 20px 20px;
+            padding: 20px;
+            background-color: gray;
+        }
+        h1
+        {
+            text-align: center;
+            font-family: impact;
+            font-size: 40px;
+            letter-spacing: 6px;
+            color: darkslategray;
+            text-shadow: 2px 2px black;
+        }
+        legend
+        {
+            font-family: sans-serif;
+            letter-spacing: 3px;
+            background-color: darkslategray;
+        }
+        #btn
+            {
+                background-color:#1d1e22;
+                color:#FFAAAA;
+                width: 500px;
+                height: 30px;
+                box-shadow: 2px 2px black;
+                text-shadow:  2px 2px black;
+                border-radius: 10px;
+            }
+        #memberTable
+        {
+            background-color: #27111b;
+            color: #0054ff;
+            letter-spacing: 3px;
+            font-family: sans-serif;
+            border-radius: 10px;
+            margin: 10px 0px 0px 0px;
+            box-shadow: 2px 2px white;
+        }
+        #viewMember, #sendMember, #blockMember, #changePrice, #changePoint, #changeDiscount, #goToMain
+        {
+            margin: 2%;
+        }
+        #send, #block, #sendButton, #blockButton, #discountDiv
+        {
+            margin: 1%;
+            width: 500px;
+            background-color: #27111b;
+            text-align: center;
+            border-radius: 20px;
+        }
+        #sendButton, #blockButton
+        {
+           margin: 1%;
+        }
+        #foot
+        {
+            font-family: fantasy;
+            letter-spacing: 7px;
+            word-spacing: 5px;
+            text-align: center;
+            text-shadow: 1px 1px grey;
+        }
+        legend
+        {
+            color: red;
+        }
+        select
+        {
+            margin: 3%;
+            width: 450px;
+        }
+        textarea
+        {
+            margin: 2%;
+        }
+    </style>
+    <body>									<!--Please use "admin" for password-->
+        <h1>Admin Page</h1>
+        <div style="margin: 1%">
+        <div>
+            <fieldset>
+                <legend>Manage book information</legend>
+                <div id="changeDiscount">
+                    <input type="button" id="btn" value="Discount price" onclick="Discount()">
+                    <div id="discountDiv">
+                        
+                    </div>
+                </div>
+                <div id="blockMember">
+                    <input type="button" id="btn" onclick="ClearLocalStorage()" value="Clear all member and book data">
+                </div>
+                <div id="goToMain">
+                    <input type="button" id="btn" onclick="toMain()" value="Go to Min Online Book Shop Website">
+                </div>
+            </fieldset>
+        </div>
+        <br><br>
+        <div>
+            <fieldset>
+                <legend>Manage member information</legend>
+                <div id="viewMember">
+                    <input type="button" id="btn" onclick="ShowMember()" value="Show all member">
+                    <table id="memberTable" cellpadding="5px"><!--write form javascript-->
+                    </table>
+                </div>
+                <div id="sendMember"><!--write form javascript-->
+                    <input type="button" id="btn" onclick="SendMember()" value="Send member">
+                    <div id="send"></div>
+                    <div id="sendButton" style="text-align: center;"></div>
+                </div>
+                <div id="blockMember"><!--write form javascript-->
+                    <input type="button" id="btn" onclick="BlockMember()" value="Block member">
+                    <div id="block"></div>
+                    <div id="blockButton"></div>
+                </div>
+            </fieldset>
+        </div>
+        </div>
+        <div id="foot">
+            &copy;Copyright by Min Naing Htun
+        </div>
+        <script type="text/javascript">
+            EventUtil.addHandler(window,"load",function(){
+                localStorage.setItem("user_n0","admin");//store admin data to localStorage
+                localStorage.setItem("user_pass0","admin");//store admin data to localStorage
+                localStorage.setItem("user_e0","admin.com")//store admin data to localStorage
+                var passTest = window.prompt("Enter admin password!");
+                if(passTest != localStorage.getItem("user_pass0")){
+                    window.location.href = "index.html";
+                }
+            });
+            var flag1 = true;
+            var flag2 = true;
+            var flag3 = true;
+            var flag4 = true;
+            var flag5 = true;
+            
+            function ShowMember()
+            {
+                if(flag1){
+                var numberOfMember = localStorage.getItem("T_Count");
+                var table = document.getElementById("memberTable");
+                table.setAttribute("border","1");
+                var row = "";
+                var col1 = "", col2 = "", col3 = "", col4 = "";
+                
+                ///////create title///////
+                row = document.createElement("tr");
+                col1 = document.createElement("th");
+                col1.appendChild(document.createTextNode("No"));
+                row.appendChild(col1);
+                col2 = document.createElement("th");
+                col2.appendChild(document.createTextNode("Member Name"));
+                row.appendChild(col2);
+                col3 = document.createElement("th");
+                col3.appendChild(document.createTextNode("Member Email"));
+                row.appendChild(col3);
+                col4 = document.createElement("th");
+                col4.appendChild(document.createTextNode("Member Password"));
+                row.appendChild(col4);
+                table.appendChild(row);
+                //////////////////////////
+                var show_count = 0;
+                var show_name = "";
+                var show_email = "";
+                var show_pass = "";
+                
+                for(var i=0; i<=numberOfMember; i++){
+                    show_count = i;
+                    show_name =  localStorage.getItem("user_n"+i);
+                    show_email = localStorage.getItem("user_e"+i)
+                    show_pass =  localStorage.getItem("user_pass"+i);
+                    row = document.createElement("tr");
+                    col1 = document.createElement("td");
+                    col1.appendChild(document.createTextNode(show_count));
+                    row.appendChild(col1);
+                    col2 = document.createElement("td");
+                    col2.appendChild(document.createTextNode(show_name));
+                    row.appendChild(col2);
+                    col3 = document.createElement("td");
+                    col3.appendChild(document.createTextNode(show_email));
+                    row.appendChild(col3);
+                    col4 = document.createElement("td");
+                    col4.appendChild(document.createTextNode(show_pass));
+                    row.appendChild(col4);
+                    table.appendChild(row);
+                }
+                    flag1 = false;
+                }
+                else{
+                    document.getElementById("memberTable").innerHTML = "";
+                    flag1 = true;
+                }
+                
+                
+                
+            }
+            function SendMember()
+            {
+                
+                if(flag2){
+                    var numberOfMember = localStorage.getItem("T_Count");
+                    var select = document.createElement("select");
+                    select.setAttribute("size","5");
+                    var newOption = "";
+                    
+                    var send_name = "";
+                    
+                    for(var i=1; i<=numberOfMember; i++){
+                        send_name =  localStorage.getItem("user_n"+i);
+                        newOption = document.createElement("option");
+                        newOption.appendChild(document.createTextNode(send_name));
+                        select.appendChild(newOption);
+                    }
+                    select.options[0].selected = true;
+                    document.getElementById("send").appendChild(select);
+                    var textField = document.createElement("textarea");
+                    textField.setAttribute("id","Stxt");
+                    textField.setAttribute("rows","5");
+                    textField.setAttribute("cols","60");
+                    
+                    var bSend = document.createElement("input");
+                    bSend.setAttribute("type","button");
+                    bSend.setAttribute("value","Send Message");
+                    
+                    document.getElementById("sendButton").appendChild(textField);
+                    document.getElementById("sendButton").appendChild(document.createElement("div"));
+                    document.getElementById("sendButton").appendChild(bSend);
+                    EventUtil.addHandler(bSend,"click",function(){
+                        
+                        var selectCount = 0;
+                        for(var i=0; i<select.length; i++){
+                           if(select.options[i].selected){
+                               selectCount = i+1;
+                               localStorage.setItem("user_inbox"+selectCount,document.getElementById("Stxt").value);
+                           }
+                       }
+                        alert("Success!");
+                    });
+                    
+                    flag2 = false;
+                    
+                    }
+                else{
+                    document.getElementById("send").innerHTML = "";
+                    document.getElementById("sendButton").innerHTML = "";
+                    flag2 = true;
+                }
+            }
+            function BlockMember()
+            {
+                if(flag3){
+                    var numberOfMember = localStorage.getItem("T_Count");
+                    var select = document.createElement("select");
+                    select.setAttribute("size","5");
+                    var newOption = "";
+                    
+                    var block_name = "";
+                    
+                    for(var i=1; i<=numberOfMember; i++){
+                        block_name =  localStorage.getItem("user_n"+i);
+                        newOption = document.createElement("option");
+                        newOption.appendChild(document.createTextNode(block_name));
+                        select.appendChild(newOption);
+                    }
+                    select.options[0].selected = true;
+                    document.getElementById("block").appendChild(select);
+                    
+                    
+                    var bBlock = document.createElement("input");
+                    bBlock.setAttribute("type","button");
+                    bBlock.setAttribute("value","Block Member");
+                    bBlock.style.margin = "2%";
+                    
+                    document.getElementById("blockButton").appendChild(bBlock);
+                    EventUtil.addHandler(bBlock,"click",function(){
+                        var selectCount = 0;
+                       for(var i=0; i<select.length; i++){
+                           if(select.options[i].selected){
+                               selectCount = i+1;
+                               localStorage.removeItem("user_n"+selectCount);
+                               localStorage.removeItem("user_a"+selectCount);
+                               localStorage.removeItem("user_b"+selectCount);
+                               localStorage.removeItem("user_e"+selectCount);
+                               localStorage.removeItem("user_f"+selectCount);
+                               localStorage.removeItem("user_g"+selectCount);
+                               localStorage.removeItem("user_p"+selectCount);
+                               localStorage.removeItem("user_pass"+selectCount);
+                               select.remove(i);
+                           }
+                       }
+                        alert("Success!");
+                    });
+                    
+                    flag3 = false;
+                    }
+                else{
+                    document.getElementById("block").innerHTML = "";
+                    document.getElementById("blockButton").innerHTML = "";
+                    flag3 = true;
+                }
+            }
+            function Discount(){
+                if(flag5){
+                var txt = document.createElement("input");
+                txt.setAttribute("value","1000");
+                txt.setAttribute("type","text");
+                var btn = document.createElement("input");
+                btn.setAttribute("type","button");
+                btn.setAttribute("value","Set discount price");
+                document.getElementById("discountDiv").appendChild(txt);
+                document.getElementById("discountDiv").appendChild(btn);
+                txt.select();
+                EventUtil.addHandler(btn,"click",function(){
+                    var price = txt.value;
+                   localStorage.setItem("discountPrice",price);
+                    alert("Success!");
+                });
+                flag5 = false;
+                }else{
+                    document.getElementById("discountDiv").innerHTML = "";
+                    flag5 = true;
+                }
+                
+                
+            }
+            function ClearLocalStorage()
+            {
+                if(confirm("Are you sure to delete all data?")){
+                        localStorage.clear();
+                }
+            }
+            function toMain()
+            {
+                sessionStorage.setItem("Sname","ADMIN");
+                sessionStorage.setItem("Sgender","admin");
+                sessionStorage.setItem("Sbirth","-");
+                sessionStorage.setItem("Saddress","Ponnagyun/Arakan/Myanmar");
+                sessionStorage.setItem("SFav","-");
+                sessionStorage.setItem("user_type","admin");
+                window.location.href = "main.html";
+            }
+            
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Poem</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="mainStyle.css">
+        <script type="text/javascript" src="EventUtil.js"></script>
+    </head>
+    <body>
+        <div id="title"><img src="backgroundPhoto/logo.png" width="60" height="60">&nbsp;Min Online Book Shop</div>
+        <br>
+        <div id="menu">
+            <li><a href="main.html">Home</a></li>
+            <li><a href="Popular.html">Popular</a></li>
+            <li><a href="Store.html">Store</a></li>
+            <li><a href="Content.html">ContactUs</a></li>
+            <li><a href="Profile.html">Profile</a></li>
+        </div>
+        <center>
+        <div id="secondMenu">
+            <a href="Science.html"><input type="button" value="Science and Technology" id="myBtn"></a>
+            <a href="Tale.html"><input type="button" value="Tale" id="myBtn"></a>
+            <a href="Drama.html"><input type="button" value="Drama" id="myBtn"></a>
+            <a href="Biography.html"><input type="button" value="Biography" id="myBtn"></a>
+            <a href="Poem.html"><input type="button" value="Poem" id="myBtn"></a>
+            <a href="Comedy.html"><input type="button" value="Comedy" id="myBtn"></a>
+        </div>
+        </center>
+        <center>
+        <div>
+            <table id="p_table" cellspacing="20px" cellpadding="5px">
+                <tr>
+                    <td><img src="book_store/poem/poem%20(1).jpg" id="t_image1" class="B_image" title="Right click for book description">
+                        <div id="des1" style="position: absolute; background-color: #6deeaa; color: black; visibility: hidden;">Good poems<br><br><u>Description</u><br><br>This book is pretty awesome.<br>And give awesome knowledge.</div>
+                    </td>
+                    <td><img src="book_store/poem/poem%20(2).jpg" id="t_image2" class="B_image" title="Right click for book description">
+                    <div id="des2" style="position: absolute; background-color: #6deeaa; color: black; visibility: hidden;">Mythos<br><br><u>Description</u><br><br>This book is pretty awesome.<br>And give awesome knowledge.</div></td>
+                    <td><img src="book_store/poem/poem%20(3).jpg" id="t_image3" class="B_image" title="Right click for book description">
+                    <div id="des3" style="position: absolute; background-color: #6deeaa; color: black; visibility: hidden;">Please Excuse This Poem<br><br><u>Description</u><br><br>This book is pretty awesome.<br>And give awesome knowledge.</div></td>
+                    <td><img src="book_store/poem/poem%20(4).jpg" id="t_image4" class="B_image" title="Right click for book description">
+                    <div id="des4" style="position: absolute; background-color: #6deeaa; color: black; visibility: hidden;">The sun & flowers<br><br><u>Description</u><br><br>This book is pretty awesome.<br>And give awesome knowledge.</div></td>
+                </tr>
+                <tr id="myTr">
+                    <td>
+                        Name : Good poems<br>
+                        Price : <span id="Bprice0"></span><br>
+                        <center><a href="Order.html"><input type="button" value="Order now" id="btn" title="Order now" onclick="storeBookData('Good poems','book_store/poem/poem%20(1).jpg','0')"></a></center>
+                    </td>
+                    <td>
+                        Name : Mythos<br>
+                        Price : <span id="Bprice1"></span><br>
+                        <center><a href="Order.html"><input type="button" value="Order now" id="btn" title="Order now" onclick="storeBookData('Mythos','book_store/poem/poem%20(2).jpg','1')"></a></center>
+                    </td>
+                    <td>
+                        Name : Please Excuse This Poem<br>
+                        Price : <span id="Bprice2"></span><br>
+                        <center><a href="Order.html"><input type="button" value="Order now" id="btn" title="Order now" onclick="storeBookData('Please Excuse This Poem','book_store/poem/poem%20(3).jpg','2')"></a></center>
+                    </td>
+                    <td>
+                        Name : The sun & flowers<br>
+                        Price : <span id="Bprice3"></span><br>
+                        <center><a href="Order.html"><input type="button" value="Order now" id="btn" title="Order now" onclick="storeBookData('The sun & flowers','book_store/poem/poem%20(4).jpg','3')"></a></center>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="book_store/poem/poem%20(5).jpg" id="t_image5" class="B_image" title="Right click for book description">
+                        <div id="des5" style="position: absolute; background-color: #6deeaa; color: black; visibility: hidden;">Forget me<br><br><u>Description</u><br><br>This book is pretty awesome.<br>And give awesome knowledge.</div>
+                    </td>
+                    <td><img src="book_store/poem/poem%20(6).jpg" id="t_image6" class="B_image" title="Right click for book description">
+                    <div id="des6" style="position: absolute; background-color: #6deeaa; color: black; visibility: hidden;">lI HE<br><br><u>Description</u><br><br>This book is pretty awesome.<br>And give awesome knowledge.</div></td>
+                    <td><img src="book_store/poem/poem%20(7).jpg" id="t_image7" class="B_image" title="Right click for book description">
+                    <div id="des7" style="position: absolute; background-color: #6deeaa; color: black; visibility: hidden;">W.B.Yeats<br><br><u>Description</u><br><br>This book is pretty awesome.<br>And give awesome knowledge.</div></td>
+                    <td><img src="book_store/poem/poem%20(8).jpg" id="t_image8" class="B_image" title="Right click for book description">
+                    <div id="des8" style="position: absolute; background-color: #6deeaa; color: black; visibility: hidden;">Practical Cats<br><br><u>Description</u><br><br>This book is pretty awesome.<br>And give awesome knowledge.</div></td>
+                </tr>
+                <tr id="myTr">
+                    <td>
+                        Name : Forget me<br>
+                        Price : <span id="Bprice4"></span><br>
+                        <center><a href="Order.html"><input type="button" value="Order now" id="btn" title="Order now" onclick="storeBookData('Forget me','book_store/poem/poem%20(5).jpg','4')"></a></center>
+                    </td>
+                    <td>
+                        Name : lI HE<br>
+                        Price : <span id="Bprice5"></span><br>
+                        <center><a href="Order.html"><input type="button" value="Order now" id="btn" title="Order now" onclick="storeBookData('lI HE','book_store/poem/poem%20(6).jpg','5')"></a></center>
+                    </td>
+                    <td>
+                        Name : W.B.Yeats<br>
+                        Price : <span id="Bprice6"></span><br>
+                        <center><a href="Order.html"><input type="button" value="Order now" id="btn" title="Order now" onclick="storeBookData('W.B.Yeats','book_store/poem/poem%20(7).jpg','6')"></a></center>
+                    </td>
+                    <td>
+                        Name : Practical Cats<br>
+                        Price : <span id="Bprice7"></span><br>
+                        <center><a href="Order.html"><input type="button" value="Order now" id="btn" title="Order now" onclick="storeBookData('Practical Cats','book_store/poem/poem%20(8).jpg','7')"></a></center>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </center>
+        
+        <center>
+        <div id="foot">
+            &copy;Copyright by Min Naing Htun
+        </div>
+        </center>
+        <script type="text/javascript">
+            var bookPrice = [3500,4000,4000,5500,6500,3500,4500,8000];//for guest price
+            
+                ///////////////////////////////////
+            EventUtil.addHandler(document.getElementById("t_image1"),"contextmenu",function(event){
+                event = EventUtil.getEvent(event);
+                EventUtil.preventDefault(event);
+                var div = document.getElementById("des1");
+                div.style.left = event.clientX+"px";
+                div.style.top = event.clientY+"px";
+                div.style.visibility = "visible";
+            });
+            EventUtil.addHandler(document.getElementById("t_image2"),"contextmenu",function(event){
+                event = EventUtil.getEvent(event);
+                EventUtil.preventDefault(event);
+                var div = document.getElementById("des2");
+                div.style.left = event.clientX+"px";
+                div.style.top = event.clientY+"px";
+                div.style.visibility = "visible";
+            });
+            EventUtil.addHandler(document.getElementById("t_image3"),"contextmenu",function(event){
+                event = EventUtil.getEvent(event);
+                EventUtil.preventDefault(event);
+                var div = document.getElementById("des3");
+                div.style.left = event.clientX+"px";
+                div.style.top = event.clientY+"px";
+                div.style.visibility = "visible";
+            });
+            EventUtil.addHandler(document.getElementById("t_image4"),"contextmenu",function(event){
+                event = EventUtil.getEvent(event);
+                EventUtil.preventDefault(event);
+                var div = document.getElementById("des4");
+                div.style.left = event.clientX+"px";
+                div.style.top = event.clientY+"px";
+                div.style.visibility = "visible";
+            });
+            EventUtil.addHandler(document.getElementById("t_image5"),"contextmenu",function(event){
+                event = EventUtil.getEvent(event);
+                EventUtil.preventDefault(event);
+                var div = document.getElementById("des5");
+                div.style.left = event.clientX+"px";
+                div.style.top = event.clientY+"px";
+                div.style.visibility = "visible";
+            });
+            EventUtil.addHandler(document.getElementById("t_image6"),"contextmenu",function(event){
+                event = EventUtil.getEvent(event);
+                EventUtil.preventDefault(event);
+                var div = document.getElementById("des6");
+                div.style.left = event.clientX+"px";
+                div.style.top = event.clientY+"px";
+                div.style.visibility = "visible";
+            });
+            EventUtil.addHandler(document.getElementById("t_image7"),"contextmenu",function(event){
+                event = EventUtil.getEvent(event);
+                EventUtil.preventDefault(event);
+                var div = document.getElementById("des7");
+                div.style.left = event.clientX+"px";
+                div.style.top = event.clientY+"px";
+                div.style.visibility = "visible";
+            });
+            EventUtil.addHandler(document.getElementById("t_image8"),"contextmenu",function(event){
+                event = EventUtil.getEvent(event);
+                EventUtil.preventDefault(event);
+                var div = document.getElementById("des8");
+                div.style.left = event.clientX+"px";
+                div.style.top = event.clientY+"px";
+                div.style.visibility = "visible";
+            });
+            EventUtil.addHandler(document,"click",function(){
+               document.getElementById("des1").style.visibility = "hidden";
+                document.getElementById("des2").style.visibility = "hidden";
+                document.getElementById("des3").style.visibility = "hidden";
+                document.getElementById("des4").style.visibility = "hidden";
+                document.getElementById("des5").style.visibility = "hidden";
+                document.getElementById("des6").style.visibility = "hidden";
+                document.getElementById("des7").style.visibility = "hidden";
+                document.getElementById("des8").style.visibility = "hidden";
+            });
+            /////////////////////////////////////////////
+            /////////set price//////////////////////////
+            var mtest = sessionStorage.getItem("user_type");
+            if(mtest == "member"){
+                var memberBookPrice = new Array(8);
+                var discount = parseInt(sessionStorage.getItem("Sdiscount"));
+                for(var i=0; i<8; i++)
+                    {
+                    memberBookPrice[i] = bookPrice[i]-discount;
+                    document.getElementById("Bprice"+i).innerHTML = memberBookPrice[i];
+                    var strike = document.createElement("strike");
+                    strike.appendChild(document.createTextNode(bookPrice[i]));
+                    document.getElementById("Bprice"+i).appendChild(strike);
+                }
+               }
+            else{
+                for(var i=0; i<8; i++)
+                    {
+                        document.getElementById("Bprice"+i).innerHTML = bookPrice[i];
+                    }
+            }
+            
+            function storeBookData(name,src,priceNo){
+                if(mtest == "member"){
+                    sessionStorage.setItem("bookName",name);
+                    sessionStorage.setItem("bookSrc",src);
+                    sessionStorage.setItem("bookPrice",memberBookPrice[priceNo]);
+                }else if(mtest == "admin"){
+                    alert("You are admin.\nYou can't buy book.");
+                }else if(mtest == "guest"){
+                    sessionStorage.setItem("bookName",name);
+                    sessionStorage.setItem("bookSrc",src);
+                    sessionStorage.setItem("bookPrice",bookPrice[priceNo]);
+                }
+                
+            }
+            
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
